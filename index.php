@@ -18,6 +18,7 @@
         <title>Agatha</title>
 
         <link rel="stylesheet" href="css/main.css" type="text/css" />
+        <link rel="stylesheet" href="css/pages.css" type="text/css" />
     </head>
 
     <body>

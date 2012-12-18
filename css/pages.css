@@ -1,0 +1,11 @@
+/* ORAGNGE : #FF6600 */
+/* BACKGROUND GREY: #363D41 */
+/* TEXT: #DDDDCC */
+
+
+p {
+    color: #DDDDCC;
+/*     text-align: justify; */
+/*     font-size: 14px; */
+    font-size: 1em;
+}
