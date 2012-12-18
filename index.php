@@ -23,33 +23,54 @@
     <body>
         <h1>#Agatha</h1>
 
+        <!-- MENU -->
         <div id="menu">
             <ul>
-                <!-- HOMEPAGE -->
-                <li>
-                    <a href="?page=index">
-                        Home<br/>
-                        <span>Agatha project homepage</span>
-                    </a>
-                </li>
+                <?php
+                    // HOMEPAGE
+                    // explains roughly what the project is about
+                    if($page == "index") {
+                        print('<li class="active">Home<br/><span class="active">Agatha project homepage</span></li>');
+                    } else {
+                        print('<li><a href="?page=index">Home<br/><span>Agatha project homepage</span></a></li>');
+                    }
 
-                <!-- WHAT IS IT? -->
-                <li>
-                    <a href="?page=whatisit">
-                        What is Agatha?<br/>
-                        <span>A description of the Agatha proejct</span>
-                    </a>
-                </li>
+                    // SETUP
+                    // explains how to setup the project (link to Github wiki, code etc)
+                    if($page == "setup") {
+                        print('<li class="active">Agatha setup<br/><span class="active">How to setup an Agatha node</span></li>');
+                    } else {
+                        print('<li><a href="?page=setup">Agatha setup<br/><span>How to setup an Agatha node</span></a></li>');
+                    }
 
-                <!-- ABOUT -->
-                <li>
-                    <a href="?page=about">
-                        About<br/>
-                        <span>Something about the creators of the Agatha project</span>
-                    </a>
-                </li>
+                    // USAGE
+                    // explains how to use Agatha's API
+                    if($page == "usage") {
+                        print('<li class="active">Usage<br/><span class="active">How to use Agatha\'s API</span></li>');
+                    } else {
+                        print('<li><a href="?page=usage">Usage<br/><span>How to use Agatha\'s API</span></a></li>');
+                    }
+
+
+                    // ABOUT
+                    // who wrote the code? who got the idea? contact emails and irc
+                    if($page == "about") {
+                        print('<li class="active">About<br/><span class="active">Something about the creators of the Agatha project</span></li>');
+                    } else {
+                        print('<li><a href="?page=about">About<br/><span>Something about the creators of the Agatha project</span></a></li>');
+                    }
+                ?>
             </ul>
         </div>
-    </body>
+
+        <div id="content">
+            <?php
+                if (!@include ("pages/".$page."_page.php")) {
+                    @include('404.php');
+                }
+            ?>
+        </div>
+
+  </body>
 
 </html>

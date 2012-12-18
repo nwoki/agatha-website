@@ -18,6 +18,13 @@ body {
 }
 
 
+#content
+{
+    width: 100%;
+    padding-top: 100px;
+}
+
+
 
 /* HORIZONTAL MENU */
 #menu {
@@ -54,17 +61,28 @@ body {
 /*     line-height : 13em, display:block ; */
 }
 
-#menu li a:hover {
-    color : #FF6600;
-    text-shadow: 0.1em 0.1em 0.2em black;
-}
-
 #menu li span {
     font : 11px arial;
     color : #9C9C9C;
     margin : 0;
 }
 
+#menu li a:hover {
+    color : #FF6600;
+    text-shadow: 0.1em 0.1em 0.2em black;
+}
+
 #menu li span:hover {
     color : #FF6600;
+}
+
+#menu li.active {
+    font-family: Monaco, Consolas, "Lucida Console", monospace;
+    color : #FF6600;
+    text-shadow: 0.1em 0.1em 0.2em black;
+}
+
+#menu span.active {
+    color : #FF6600;
+    text-shadow: 0.1em 0.1em 0.2em black;
 }
