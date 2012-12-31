@@ -23,11 +23,13 @@ body {
 {
     margin-left: 20%;
     margin-right: 20%;
+/*     float: left; */
+    /*display: inline-block;*/
 }
 
 
 
-/* HORIZONTAL MENU */
+/* VERTICAL MENU */
 #menu {
     margin: 0;
     padding: 0;
@@ -41,10 +43,7 @@ body {
     margin : 0;
     padding: 0;
 
-    /* to align in center */
-/*     position: relative; */
-/*     float: left; */
-/*     left: 50%; */
+    float: left;
 }
 
 #menu ul li {
@@ -94,4 +93,25 @@ body {
 #menu span.active {
     color : #FF6600;
     text-shadow: 0.1em 0.1em 0.2em black;
+}
+
+
+/* RIGHT PANEL */
+#rightPanel {
+    margin: 0;
+    padding: 0;
+    background-color: #FF6600;
+    border-radius: 5px;
+    width: 15%;
+    float: right;
+    display: block;
+    padding: 0;
+    text-align: left;
+    margin-top: 10px;
+}
+
+#rightPanel p {
+    width: 100%;
+    background-color: green;
+    
 }

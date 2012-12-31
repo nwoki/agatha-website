@@ -24,6 +24,12 @@
     <body>
         <h1>#Agatha</h1>
 
+        <!-- TODO make text wrap and stay inside width -->
+        <div id="rightPanel">
+            <img src="images/logoAgatha.png" width=100% />
+            <p>asdasdasdddddddddddddddd</p>
+        </div>
+
         <!-- MENU -->
         <div id="menu">
             <ul>
@@ -52,7 +58,6 @@
                         print('<li><a href="?page=usage">Usage<br/><span>How to use Agatha\'s API</span></a></li>');
                     }
 
-
                     // ABOUT
                     // who wrote the code? who got the idea? contact emails and irc
                     if($page == "about") {
@@ -71,7 +76,6 @@
                 }
             ?>
         </div>
-
   </body>
 
 </html>
