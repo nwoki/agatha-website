@@ -1,12 +1,19 @@
 /* ORAGNGE : #FF6600 */
 /* BACKGROUND GREY: #363D41 */
 /* TEXT: #DDDDCC */
+@font-face {
+    font-family: 'Armata';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Armata'), local('Armata-Regular'), url(http://themes.googleusercontent.com/static/fonts/armata/v3/FG9R9aX-RIX_AvJI8USOWg.woff) format('woff');
+}
 
 
 h1 {
     color: #FF6600;
     text-shadow: 0.1em 0.1em 0.2em black;
-    font-family: Monaco, Consolas, "Lucida Console", monospace;
+/*     font-family: Monaco, Consolas, "Lucida Console", monospace; */
+    font-family: 'Armata', Fallback, monospace;
     text-align: center;
     margin-top: 0;
 }
@@ -62,14 +69,15 @@ body {
 
 #menu li a {
     color : white;
-    font-family: Monaco, Consolas, "Lucida Console", monospace;
+/*     font-family: Monaco, Consolas, "Lucida Console", monospace; */
+    font-family: 'Armata', Fallback, monospace;
     text-decoration: none;
 /*     line-height : 13em, display:block ; */
 }
 
 #menu li span {
     font : 16px arial;
-    font-family: Monaco, Consolas, "Lucida Console", monospace;
+/*     font-family: Monaco, Consolas, "Lucida Console", monospace; */
     color : #9C9C9C;
     margin : 0;
 }
@@ -84,7 +92,8 @@ body {
 }
 
 #menu li.active {
-    font-family: Monaco, Consolas, "Lucida Console", monospace;
+/*     font-family: Monaco, Consolas, "Lucida Console", monospace; */
+    font-family: 'Armata', Fallback, monospace;
     font-weight: bold;
     color : #FF6600;
     text-shadow: 0.1em 0.1em 0.2em black;
@@ -113,5 +122,4 @@ body {
 #rightPanel p {
     width: 100%;
     background-color: green;
-    
 }

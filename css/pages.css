@@ -2,10 +2,17 @@
 /* BACKGROUND GREY: #363D41 */
 /* TEXT: #DDDDCC */
 
+/* Gamezoo font */
+@font-face {
+    font-family: 'Armata';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Armata'), local('Armata-Regular'), url(http://themes.googleusercontent.com/static/fonts/armata/v3/FG9R9aX-RIX_AvJI8USOWg.woff) format('woff');
+}
 
 p {
     color: #DDDDCC;
-/*     text-align: justify; */
-/*     font-size: 14px; */
-    font-size: 1em;
+    text-align: justify;
+    font-family: 'Armata', Fallback, sans-serif;
+    font-size: 13px;
 }
