@@ -109,7 +109,7 @@ body {
 #rightPanel {
     margin: 0;
     padding: 0;
-    background-color: #FF6600;
+/*     background-color: #FF6600; */
     border-radius: 5px;
     width: 15%;
     float: right;

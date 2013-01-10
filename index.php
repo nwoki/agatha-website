@@ -1,4 +1,8 @@
 <?php
+    // TODO
+    // session_start();
+
+//     require("functions/login.php");
 
     $page = "";
 
@@ -8,6 +12,9 @@
     } else {
         $page = "index";
     }
+
+    // TODO get cookie for user + pass
+    // get session var AUTHED
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//IT" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -19,15 +26,30 @@
 
         <link rel="stylesheet" href="css/main.css" type="text/css" />
         <link rel="stylesheet" href="css/pages.css" type="text/css" />
+        <link rel="stylesheet" href="css/login.css" type="text/css" />
+
+        <script src="/jquery/jquery-1.8.3.min.jss" type="text/javascript"></script>
     </head>
 
     <body>
         <h1>#Agatha</h1>
 
-        <!-- TODO make text wrap and stay inside width -->
+        <!-- LOGIN -->
         <div id="rightPanel">
-            <img src="images/logoAgatha.png" width=100% />
-            <p>asdasdasdddddddddddddddd</p>
+            <div class="login-form">
+                <h1>Login</h1>
+                <form action="#">
+                    <input type="text" name="username" placeholder="username">
+                    <input type="password" name="password" placeholder="password">
+
+                    <span>
+                        <input type="checkbox" name="checkbox">
+                        <label for="checkbox">remember</label>
+                    </span>
+
+                    <input type="submit" value="log in">
+                </form>
+            </div>
         </div>
 
         <!-- MENU -->
