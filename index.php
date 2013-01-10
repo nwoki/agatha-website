@@ -1,10 +1,19 @@
 <?php
-    // TODO
-    // session_start();
+    session_start();
 
-//     require("functions/login.php");
+    if (isset($_POST['logout'])) {
+        session_destroy();
+        session_start();
+    }
+
+    require("functions/login.php");
 
     $page = "";
+    $postPassword = "";
+    $postUsername = "";
+
+    $sessionLogged = "";
+    $sessionUsername = "";
 
     // get page name
     if (isset($_GET["page"])) {
@@ -13,8 +22,19 @@
         $page = "index";
     }
 
-    // TODO get cookie for user + pass
-    // get session var AUTHED
+    // login info
+    if (isset($_POST['username']) && isset($_POST['password'])) {
+        $postUsername = $_POST['username'];
+        $postPassword = $_POST['password'];
+
+        login($_POST['username'], $_POST['password']);
+    }
+
+        // session info
+    if (isset($_SESSION['logged'])) {
+        $sessionLogged = $_SESSION['logged'];
+        $sessionUsername = $_SESSION['username'];
+    }
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//IT" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -36,20 +56,13 @@
 
         <!-- LOGIN -->
         <div id="rightPanel">
-            <div class="login-form">
-                <h1>Login</h1>
-                <form action="#">
-                    <input type="text" name="username" placeholder="username">
-                    <input type="password" name="password" placeholder="password">
-
-                    <span>
-                        <input type="checkbox" name="checkbox">
-                        <label for="checkbox">remember</label>
-                    </span>
-
-                    <input type="submit" value="log in">
-                </form>
-            </div>
+            <?php
+                if ($sessionLogged) {
+                    showLogoutForm($sessionUsername);
+                } else {
+                    showLoginForm();
+                }
+            ?>
         </div>
 
         <!-- MENU -->
