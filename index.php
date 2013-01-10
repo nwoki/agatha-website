@@ -1,19 +1,19 @@
 <?php
     session_start();
 
-    if (isset($_POST['logout'])) {
-        session_destroy();
-        session_start();
-    }
-
     require("functions/login.php");
 
     $page = "";
     $postPassword = "";
     $postUsername = "";
 
-    $sessionLogged = "";
-    $sessionUsername = "";
+
+    if (isset($_POST['logout'])) {
+        session_destroy();
+        session_start();
+
+        unset($_GET["page"]);
+    }
 
     // get page name
     if (isset($_GET["page"])) {
@@ -21,6 +21,9 @@
     } else {
         $page = "index";
     }
+
+    $sessionLogged = "";
+    $sessionUsername = "";
 
     // login info
     if (isset($_POST['username']) && isset($_POST['password'])) {
@@ -30,7 +33,7 @@
         login($_POST['username'], $_POST['password']);
     }
 
-        // session info
+    // session info
     if (isset($_SESSION['logged'])) {
         $sessionLogged = $_SESSION['logged'];
         $sessionUsername = $_SESSION['username'];
@@ -99,6 +102,16 @@
                         print('<li class="active">About<br/><span class="active">Something about the creators of the Agatha project</span></li>');
                     } else {
                         print('<li><a href="?page=about">About<br/><span>Something about the creators of the Agatha project</span></a></li>');
+                    }
+
+                    // ADMIN SECTION
+                    if ($sessionLogged) {
+                        if($page == "admincp") {
+                            print('<li class="active">Admin CP<br/><span class="active">Admin control panel</span></li>');
+                        } else {
+                            print('<li><a href="?page=admincp">Admin CP<br/><span>Admin control panel</span></a></li>');
+                        }
+
                     }
                 ?>
             </ul>

@@ -64,11 +64,9 @@
             <div class=login-form>
                 <h1>Hello, '".$username."'</h1>
 
-                <ul>
-                    <li>Admin Panel</li>
-                </ul>
-
                 <form action=# method=post>
+                    <!-- HACK just to get the button at the bottom until we add some info here-->
+                    <br><br><br><br><br>
                     <input type=hidden name=logout value=true>
                     <input type=submit value=logout>
                 </form>
