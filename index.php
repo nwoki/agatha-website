@@ -106,12 +106,20 @@
                         print('<li><a href="?page=about">About<br/><span>Something about the creators of the Agatha project</span></a></li>');
                     }
 
-                    // ADMIN SECTION
-                    if ($sessionLogged && $sessionIsAdmin) {
-                        if($page == "admincp") {
-                            print('<li class="active">Admin CP<br/><span class="active">Admin control panel</span></li>');
+                    // ADMIN/USER SECTION
+                    if ($sessionLogged) {
+                        if ($sessionIsAdmin == "yes") {
+                            if($page == "admincp") {
+                                print('<li class="active">Admin CP<br/><span class="active">Admin control panel</span></li>');
+                            } else {
+                                print('<li><a href="?page=admincp">Admin CP<br/><span>Admin control panel</span></a></li>');
+                            }
                         } else {
-                            print('<li><a href="?page=admincp">Admin CP<br/><span>Admin control panel</span></a></li>');
+                            if($page == "usercp") {
+                                print('<li class="active">User CP<br/><span class="active">User control panel</span></li>');
+                            } else {
+                                print('<li><a href="?page=usercp">User CP<br/><span>user control panel</span></a></li>');
+                            }
                         }
                     }
                 ?>

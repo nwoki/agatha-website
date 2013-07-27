@@ -24,7 +24,7 @@
             // check match for login and pass
             if ($doc->get("login") == $username && $doc->get("password") == md5($password)) {
                 $_SESSION['username'] = $username;
-                $_SESSION['isAdmin']  = true;
+                $_SESSION['isAdmin']  = "yes";
                 $_SESSION['logged'] = true;
                 $loginFound = true;
                 break;
@@ -45,7 +45,7 @@
                     // check match for login and pass
                     if ($doc->get("login") == $username && $doc->get("password") == md5($password)) {
                         $_SESSION['username'] = $username;
-                        $_SESSION['isAdmin']  = false;
+                        $_SESSION['isAdmin']  = "no";
                         $_SESSION['logged'] = true;
                         $loginFound = true;
                         break;
