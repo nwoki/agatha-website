@@ -5,34 +5,28 @@
     error_reporting(E_ALL);
     ini_set('display_errors', '1');
 
-    require 'global.php';
+    require_once 'global.php';
+
+    require_once 'PHP-on-Couch/lib/couch.php';
+    require_once 'PHP-on-Couch/lib/couchClient.php';
+    require_once 'PHP-on-Couch/lib/couchDocument.php';
 
     function login($username, $password) {
-        $link = connectDb();
-        $query = "select password from web_admins where login=\"$username\"";
-        $found = false;
+        $link = connectDb("webadmins");
 
-        $result = mysqli_query($link, $query);
+        // get docs anche check for match
+        $allDocs = $link->getAllDocs();
 
-        // get login and pass from database
-        while( $row = mysqli_fetch_assoc($result)) {
-            $out1 = $row['password'];
-        }
+        foreach ($allDocs->rows as $row) {
+            $doc = $link->asCouchDocuments()->getDoc($row->id);
 
-        if (!empty($out1)) {
-            // check validity of password
-            if ($out1 = md5($password)) {
-                // passwords match
+            // check match for login and pass
+            if ($doc->get("login") == $username && $doc->get("password") == md5($password)) {
                 $_SESSION['username'] = $username;
                 $_SESSION['logged'] = true;
-            } else {
-                // wrong pass
+                break;
             }
-        } else {
-//             echo "user doesn't exist";
         }
-
-        mysqli_close($link);
     }
 
 
