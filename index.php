@@ -24,6 +24,7 @@
 
     $sessionLogged = "";
     $sessionUsername = "";
+    $sessionIsAdmin = false;
 
     // login info
     if (isset($_POST['username']) && isset($_POST['password'])) {
@@ -37,6 +38,7 @@
     if (isset($_SESSION['logged'])) {
         $sessionLogged = $_SESSION['logged'];
         $sessionUsername = $_SESSION['username'];
+        $sessionIsAdmin = $_SESSION['isAdmin'];
     }
 ?>
 
@@ -105,13 +107,12 @@
                     }
 
                     // ADMIN SECTION
-                    if ($sessionLogged) {
+                    if ($sessionLogged && $sessionIsAdmin) {
                         if($page == "admincp") {
                             print('<li class="active">Admin CP<br/><span class="active">Admin control panel</span></li>');
                         } else {
                             print('<li><a href="?page=admincp">Admin CP<br/><span>Admin control panel</span></a></li>');
                         }
-
                     }
                 ?>
             </ul>

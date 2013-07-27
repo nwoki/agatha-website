@@ -13,6 +13,7 @@
 
     function login($username, $password) {
         $link = connectDb("webadmins");
+        $loginFound = false;
 
         // get docs anche check for match
         $allDocs = $link->getAllDocs();
@@ -23,9 +24,33 @@
             // check match for login and pass
             if ($doc->get("login") == $username && $doc->get("password") == md5($password)) {
                 $_SESSION['username'] = $username;
+                $_SESSION['isAdmin']  = true;
                 $_SESSION['logged'] = true;
+                $loginFound = true;
                 break;
             }
+        }
+
+        // check amungst normal users if admin login was not found
+        if (!$loginFound) {
+                $link = connectDb("users");
+                $loginFound = false;
+
+                // get docs anche check for match
+                $allDocs = $link->getAllDocs();
+
+                foreach ($allDocs->rows as $row) {
+                    $doc = $link->asCouchDocuments()->getDoc($row->id);
+
+                    // check match for login and pass
+                    if ($doc->get("login") == $username && $doc->get("password") == md5($password)) {
+                        $_SESSION['username'] = $username;
+                        $_SESSION['isAdmin']  = false;
+                        $_SESSION['logged'] = true;
+                        $loginFound = true;
+                        break;
+                    }
+                }
         }
     }
 
