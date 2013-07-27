@@ -16,3 +16,68 @@ p {
     font-family: 'Armata', Fallback, sans-serif;
     font-size: 13px;
 }
+
+/* Default background panel */
+#contentPanel
+{
+    width: 100%;
+    background-color: #141517;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 20px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+
+/* TABLES */
+#hor-minimalist
+{
+    /* Center the table */
+    margin-right: auto;
+    margin-left: auto;
+    font-family: 'Armata', Fallback, sans-serif;
+    font-size: 12px;
+    background: #141517;
+    width: 60%;
+    border-collapse: collapse;
+    text-align: center;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+
+
+#hor-minimalist th
+{
+    font-size: 14px;
+    font-weight: bold;
+    color: #DDDDCC;
+    padding: 12px 8px;
+    border-bottom: 2px solid #DDDDCC;
+    text-shadow: 2px 2px 3px black;
+}
+
+
+#hor-minimalist td
+{
+    border-bottom: 1px #DDDDCC;
+    color: #DDDDCC;
+    padding: 6px 8px;
+}
+
+
+#hor-minimalist tbody tr:hover td
+{
+    color: #DDDDCC;
+}
+
+
+/* NORMAL th & td */
+th
+{
+    color: #DDDDCC;
+}
+
+td
+{
+    color: #DDDDCC;
+}

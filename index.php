@@ -1,7 +1,8 @@
 <?php
     session_start();
 
-    require("functions/login.php");
+    require_once 'functions/login.php';
+    require_once 'functions/usercpfunctions.php';
 
     $page = "";
     $postPassword = "";
