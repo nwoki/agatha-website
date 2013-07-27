@@ -1,0 +1,3 @@
+[submodule "PHP-on-Couch"]
+	path = PHP-on-Couch
+	url = https://github.com/dready92/PHP-on-Couch.git
