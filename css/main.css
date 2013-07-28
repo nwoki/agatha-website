@@ -12,9 +12,16 @@
 h1 {
     color: #FF6600;
     text-shadow: 0.1em 0.1em 0.2em black;
-/*     font-family: Monaco, Consolas, "Lucida Console", monospace; */
     font-family: 'Armata', Fallback, monospace;
     text-align: center;
+    margin-top: 0;
+}
+
+h2 {
+    color: #FF6600;
+    text-shadow: 0.1em 0.1em 0.2em black;
+    font-family: 'Armata', Fallback, monospace;
+    text-align: left;
     margin-top: 0;
 }
 

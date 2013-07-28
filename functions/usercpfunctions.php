@@ -23,6 +23,7 @@
             try {
                 $response = $link->storeDoc($newDoc);
             } catch (Exception $e) {
+                // just need the first part of the error msg
                 $error = explode('(', $e->getMessage());
                 echo "<script language=javascript>alert(\"$error[0]\")</script>";
             }

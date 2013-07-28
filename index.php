@@ -1,6 +1,7 @@
 <?php
     session_start();
 
+    require_once 'functions/admincpfunctions.php';
     require_once 'functions/login.php';
     require_once 'functions/usercpfunctions.php';
 

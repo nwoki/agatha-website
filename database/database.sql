@@ -23,5 +23,7 @@ create table gameserver_admins (
 
     -- creation info
     created datetime NOT NULL,
-    last_updated datetime NOT NULL
+    created_by varchar (15) NOT NULL,           -- TODO add foreign key
+    last_updated datetime NOT NULL,
+    last_updated_by varchar (15) NOT NULL       -- TODO add foreign key
 ) Engine = MYISAM;
