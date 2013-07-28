@@ -2,7 +2,7 @@ function(newDoc, oldDoc, userCtx) {
 
     function require(field) {
         if (!newDoc[field]) {
-            var message = field + " is required";
+            var message = "gameserver " + field + " is required";
             throw({ forbidden : message });
         }
     }
