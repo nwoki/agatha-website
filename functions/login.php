@@ -12,46 +12,50 @@
     require_once 'PHP-on-Couch/lib/couchDocument.php';
 
     function login($username, $password) {
-        $link = connectDb("webadmins");
-        $loginFound = false;
+        $conn = connectMysqlDb();
+        $query = "select password from web_admins where login=\"$username\"";
+        $found = false;
 
-        // get docs anche check for match
-        $allDocs = $link->getAllDocs();
+        $result = mysqli_query($conn, $query);
 
-        foreach ($allDocs->rows as $row) {
-            $doc = $link->asCouchDocuments()->getDoc($row->id);
+        // get login and pass from database
+        $row = mysqli_fetch_assoc($result);
+        $out1 = $row['password'];
 
-            // check match for login and pass
-            if ($doc->get("login") == $username && $doc->get("password") == md5($password)) {
+        if (!empty($out1)) {
+            // check validity of password
+            if ($out1 = md5($password)) {
+                // passwords match
                 $_SESSION['username'] = $username;
                 $_SESSION['isAdmin']  = "yes";
                 $_SESSION['logged'] = true;
-                $loginFound = true;
-                break;
+            } else {
+                // wrong pass
+                // TODO
+            }
+        } else {
+            // user doesn't exist. Check in gameserver admin database
+            $query = "select password from gameserver_admins where login=\"$username\"";
+            $result = mysqli_query($conn, $query);
+
+            $row = mysqli_fetch_assoc($result);
+            $out1 = $row['password'];
+
+            if (!empty($out1)) {
+                // check validity of password
+                if ($out1 = md5($password)) {
+                    // passwords match
+                    $_SESSION['username'] = $username;
+                    $_SESSION['isAdmin']  = "no";
+                    $_SESSION['logged'] = true;
+                } else {
+                    // wrong pass
+                    // TODO
+                }
             }
         }
 
-        // check amungst normal users if admin login was not found
-        if (!$loginFound) {
-                $link = connectDb("users");
-                $loginFound = false;
-
-                // get docs anche check for match
-                $allDocs = $link->getAllDocs();
-
-                foreach ($allDocs->rows as $row) {
-                    $doc = $link->asCouchDocuments()->getDoc($row->id);
-
-                    // check match for login and pass
-                    if ($doc->get("login") == $username && $doc->get("password") == md5($password)) {
-                        $_SESSION['username'] = $username;
-                        $_SESSION['isAdmin']  = "no";
-                        $_SESSION['logged'] = true;
-                        $loginFound = true;
-                        break;
-                    }
-                }
-        }
+        mysqli_close($conn);
     }
 
 

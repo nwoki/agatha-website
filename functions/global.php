@@ -11,4 +11,22 @@
         return $client;
     }
 
+
+    function connectMysqlDb() {
+        $mysqlDbName = "agatha";
+        $mysqlDbIp = "localhost";
+        $mysqlUser = "root";
+        $mysqlPassword = "root";
+
+        $conn = mysqli_connect($mysqlDbIp, $mysqlUser, $mysqlPassword, $mysqlDbName);
+
+        // Check connection
+        if (mysqli_connect_errno($conn)) {
+            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+            mysqli_close($conn);
+        }
+
+        return $conn;
+    }
+
 ?>
