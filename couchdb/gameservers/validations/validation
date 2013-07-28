@@ -1,0 +1,16 @@
+function(newDoc, oldDoc, userCtx) {
+
+    function require(field) {
+        if (!newDoc[field]) {
+            var message = field + " is required";
+            throw({ forbidden : message });
+        }
+    }
+
+    // require fields ONLY if we're adding a new document
+    if (!oldDoc) {
+        require("ip");
+        require("name");
+        require("admin");
+    }
+} 
