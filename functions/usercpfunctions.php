@@ -54,8 +54,6 @@
                          <th scope=col>Token</th>
                          <th scope=col>Ip</th>
                          <th scope=col>Name</th>
-                         <th scope=col>Admin</th>
-
                      </tr>
                  </thead>
                  <tbody>";
@@ -67,7 +65,6 @@
                 <td>".$row->id."</td>
                 <td>".$doc->get("ip")."</td>
                 <td>".$doc->get("name")."</td>
-                <td>".$doc->get("admin")."</td>
                 <td>
                     <div class=button>
                         <form action=# method=post>
