@@ -13,3 +13,11 @@
     // Show users currently registered gameservers
     listUserGameservers($_SESSION['username']);
 ?>
+
+    <!-- add gameserver button -->
+    <div class="button">
+        <form action="#" method="post">
+            <input type="hidden" name="add_gameserver" value="true">
+            <input type="submit" value="Add Gameserver">
+        </form>
+    </div>

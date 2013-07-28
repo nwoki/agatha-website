@@ -45,10 +45,12 @@
                 <td>".$doc->get("name")."</td>
                 <td>".$doc->get("admin")."</td>
                 <td>
+                <div class=button>
                     <form action=# method=post>
                         <input type=hidden name=delete_gameserver value=$row->id>
                         <input type=submit value=Delete>
                     </form>
+                </div>
                 </td>
                 </tr>";
         }
