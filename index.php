@@ -54,7 +54,8 @@
         <link rel="stylesheet" href="css/pages.css" type="text/css" />
         <link rel="stylesheet" href="css/login.css" type="text/css" />
 
-        <script src="/jquery/jquery-1.8.3.min.jss" type="text/javascript"></script>
+<!--         <script src="/jquery/jquery-1.8.3.min.js" type="text/javascript"></script> -->
+<!--         <script src="/jquery/jquery-1.10.2.js" type="text/javascript"></script> -->
     </head>
 
     <body>
