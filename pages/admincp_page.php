@@ -4,10 +4,15 @@
         header('Location: 404.php');
     }
 
-    listWebAdmins();
 
-    // need some space
-    echo "<br/><br/><br/><br/>";
+    if (isset($_POST['show_add_gameserver_admin_form'])) {
+        showAddGameserverAdminForm();
+    } else {
+        listWebAdmins();
 
-    listGameserverAdmins();
+        // need some space
+        echo "<br/><br/><br/><br/>";
+
+        listGameserverAdmins();
+    }
 ?>

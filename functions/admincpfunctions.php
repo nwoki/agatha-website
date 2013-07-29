@@ -5,6 +5,21 @@
 
     require_once 'global.php';
 
+    function createGameserverAdminAccount($login, $password, $firstName, $lastName, $email) {
+//         echo "<div class=\"box green\">Account for '$newLogin' has been created</div>";
+        $link = connectMysqlDb();
+        $query = "insert into gameserver_admins values('','$login','".md5($password)."','$firstName','$lastName','$email','".date("Y-m-d H:i:s")."','$_SESSION[username]','".date("Y-m-d H:i:s")."','$_SESSION[username]')";
+        echo $query;
+
+        if (!mysqli_query($link, $query)) {
+            echo "<div class=\"box red\">ERROR: ".mysqli_error($link)."</div>";
+        } else {
+            echo "<div class=\"box green\">SUCCESS! Account for \"$login\" has been created</div>";
+        }
+
+        mysqli_close($con);
+    }
+
 
     function listGameserverAdmins() {
         $link = connectMysqlDb();
@@ -24,8 +39,8 @@
                         <th scope=col>Email</th>
                         <th scope=col>Created</th>
                         <th scope=col>Created By</th>
-                        <th scope=col>Last Modified</th>
-                        <th scope=col>Modified By</th>
+                        <th scope=col>Last Update</th>
+                        <th scope=col>Updated By</th>
                     </tr>
                 </thead>
             <tbody>";
@@ -39,6 +54,10 @@
                 <td>".$row["first_name"]."</td>
                 <td>".$row["last_name"]."</td>
                 <td>".$row["email"]."</td>
+                <td>".$row["created"]."</td>
+                <td>".$row["created_by"]."</td>
+                <td>".$row["last_updated"]."</td>
+                <td>".$row["last_updated_by"]."</td>
                 <td>
                     <div class=button>
                         <form action=# method=post>
@@ -113,6 +132,24 @@
                 <form action=\"#\" method=\"post\">
                     <input type=\"hidden\" name=\"show_add_web_admin_form\" value=\"true\">
                     <input type=\"submit\" value=\"Add Web Admin\">
+                </form>
+            </div>";
+    }
+
+
+    function showAddGameserverAdminForm() {
+        echo "
+            <div class=form>
+                <h1>New Gameserver Admin</h1>
+                <form action=?page=adminvalidation method=post name=add_gameserver_admin_form>
+                    <input type=hidden name=add_gameserver_admin>
+                    <input type=text maxlength=15 name=new_gameserver_admin_login placeholder=\"Login\">
+                    <input type=password maxlength=15 name=new_gameserver_admin_password placeholder=\"Password\">
+                    <input type=password maxlength=15 name=new_gameserver_admin_confirm_password placeholder=\"Confirm Password\">
+                    <input type=text maxlength=20 name=new_gameserver_admin_first_name placeholder=\"First Name\">
+                    <input type=text maxlength=20 name=new_gameserver_admin_last_name placeholder=\"Last Name\">
+                    <input type=text maxlength=40 name=new_gameserver_admin_email placeholder=\"Email\">
+                    <input type=submit value=create>
                 </form>
             </div>";
     }

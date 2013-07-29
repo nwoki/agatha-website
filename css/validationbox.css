@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'Armata';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Armata'), local('Armata-Regular'), url(http://themes.googleusercontent.com/static/fonts/armata/v3/FG9R9aX-RIX_AvJI8USOWg.woff) format('woff');
+}
+
+.box {
+    width:100%;
+    padding:10px 0px 10px 5px;
+    margin-top: 50px;
+    margin-bottom: 8px;
+    font-weight:bold;
+    text-align: center;
+    font-family: 'Armata', Fallback, sans-serif;
+}
+
+.green {
+    background-color:#95ca78;
+    border-bottom:solid 1px #8AA000;
+}
+
+.red {
+    background-color:#FDCBCA;
+    border-bottom:solid 1px #E8514A;
+}
