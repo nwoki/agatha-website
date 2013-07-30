@@ -9,7 +9,7 @@
         $link = connectMysqlDb();
 
         // TODO check if account alreaady exists
-        $query = "select id from gameserver_admins where login =\"$login\"";
+        $query = "select id from gameserver_admins where login=\"$login\"";
 
         if (!mysqli_query($link, $query)) {
             echo "<div class=\"box red\">ERROR: ".mysqli_error($link)."</div>";
@@ -36,6 +36,11 @@
         }
 
         mysqli_close($con);
+    }
+
+
+    function deleteGameserverAdmin($gameserverAdminId) {
+        // TODO delete from mysql && delete all gameservers from couch
     }
 
 
@@ -132,7 +137,7 @@
                 <td>".$row["email"]."</td>
                 <td>
                     <div class=button>
-                        <form action=# method=post>
+                        <form action=# method=post name=delete_web_admin_form>
                             <input type=hidden name=delete_web_admin value=".$row["id"].">
                             <input type=submit value=Delete>
                         </form>

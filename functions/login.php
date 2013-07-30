@@ -35,16 +35,18 @@
             }
         } else {
             // user doesn't exist. Check in gameserver admin database
-            $query = "select password from gameserver_admins where login=\"$username\"";
+            $query = "select id,password from gameserver_admins where login=\"$username\"";
             $result = mysqli_query($conn, $query);
 
             $row = mysqli_fetch_assoc($result);
             $out1 = $row['password'];
+            $out2 = $row['id'];
 
             if (!empty($out1)) {
                 // check validity of password
                 if ($out1 = md5($password)) {
                     // passwords match
+                    $_SESSION['id'] = $out2;
                     $_SESSION['username'] = $username;
                     $_SESSION['isAdmin']  = "no";
                     $_SESSION['logged'] = true;

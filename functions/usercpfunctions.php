@@ -16,9 +16,10 @@
             // add to database
             $link = connectDb("gameservers");
             $newDoc = new stdClass();
+            $newDoc->admin_id = $_SESSION['id'];
             $newDoc->ip = $ip;
             $newDoc->name = $name;
-            $newDoc->admin = $_SESSION['username'];
+            $newDoc->creation_date = date("Y-m-d H:i:s");
 
             try {
                 $response = $link->storeDoc($newDoc);
@@ -45,7 +46,7 @@
 
     function listUserGameservers($username) {
         $link = connectDb("gameservers");
-        $result = $link->key($username)->getView('user_gameservers','by_login');
+        $result = $link->key($_SESSION['id'])->getView('user_gameservers','by_admin_id');
 
         // prepare table
         echo "<div id=contentPanel>
