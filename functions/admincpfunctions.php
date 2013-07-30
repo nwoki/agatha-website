@@ -9,13 +9,30 @@
         $link = connectMysqlDb();
 
         // TODO check if account alreaady exists
-        $query = "insert into gameserver_admins values('','$login','".md5($password)."','$firstName','$lastName','$email','".date("Y-m-d H:i:s")."','$_SESSION[username]','".date("Y-m-d H:i:s")."','$_SESSION[username]')";
-        echo $query;
+        $query = "select id from gameserver_admins where login =\"$login\"";
 
         if (!mysqli_query($link, $query)) {
             echo "<div class=\"box red\">ERROR: ".mysqli_error($link)."</div>";
         } else {
-            echo "<div class=\"box green\">SUCCESS! Account for \"$login\" has been created</div>";
+            $result = mysqli_query($link, $query);
+
+            // get id
+            $row = mysqli_fetch_assoc($result);
+            $out1 = $row['id'];
+
+            if (!empty($out1)) {
+                // FAIL! The account already exists
+                echo "<div class=\"box red\">ERROR: Account \"$login\" already exists!</div>";
+            } else {
+                $query = "insert into gameserver_admins values('','$login','".md5($password)."','$firstName','$lastName','$email','".date("Y-m-d H:i:s")."','$_SESSION[username]','".date("Y-m-d H:i:s")."','$_SESSION[username]')";
+                echo $query;
+
+                if (!mysqli_query($link, $query)) {
+                    echo "<div class=\"box red\">ERROR: ".mysqli_error($link)."</div>";
+                } else {
+                    echo "<div class=\"box green\">SUCCESS! Account for \"$login\" has been created</div>";
+                }
+            }
         }
 
         mysqli_close($con);
