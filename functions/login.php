@@ -24,16 +24,17 @@
 
         if (!empty($out1)) {
             // check validity of password
-            if ($out1 = md5($password)) {
+            if ($out1 == md5($password)) {
                 // passwords match
                 $_SESSION['username'] = $username;
                 $_SESSION['isAdmin']  = "yes";
                 $_SESSION['logged'] = true;
             } else {
                 // wrong pass
-                // TODO
+                echo "<div class=\"box red\">ERROR: wrong username or password</div>";
             }
         } else {
+            echo "<p>webadmins empty</p>";
             // user doesn't exist. Check in gameserver admin database
             $query = "select id,password from gameserver_admins where login=\"$username\"";
             $result = mysqli_query($conn, $query);
@@ -44,8 +45,7 @@
 
             if (!empty($out1)) {
                 // check validity of password
-                if ($out1 = md5($password)) {
-                echo "<p>CORRECT PASS</p>";
+                if ($out1 == md5($password)) {
                     // passwords match
                     $_SESSION['id'] = $out2;
                     $_SESSION['username'] = $username;
@@ -53,9 +53,10 @@
                     $_SESSION['logged'] = true;
                 } else {
                     // wrong pass
-                    // TODO
-                    echo "<p>WRONG PASS</p>";
+                    echo "<div class=\"box red\">ERROR: wrong username or password</div>";
                 }
+            } else {
+                echo "<div class=\"box red\">ERROR: wrong username or password</div>";
             }
         }
 
