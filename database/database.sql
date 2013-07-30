@@ -27,3 +27,5 @@ create table gameserver_admins (
     last_updated datetime NOT NULL,
     last_updated_by varchar (15) NOT NULL       -- TODO add foreign key
 ) Engine = MYISAM;
+
+INSERT INTO web_admins VALUES ("", "root", "74cc1c60799e0a786ac7094b532f01b1", "Admin", "Of da world", "admin@kickass.com");

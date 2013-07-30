@@ -11,6 +11,7 @@ function(newDoc, oldDoc, userCtx) {
     if (!oldDoc) {
         require("ip");
         require("name");
-        require("admin");
+        require("admin_id");
+        require("creation_date");
     }
 } 

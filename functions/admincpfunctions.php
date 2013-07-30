@@ -6,8 +6,9 @@
     require_once 'global.php';
 
     function createGameserverAdminAccount($login, $password, $firstName, $lastName, $email) {
-//         echo "<div class=\"box green\">Account for '$newLogin' has been created</div>";
         $link = connectMysqlDb();
+
+        // TODO check if account alreaady exists
         $query = "insert into gameserver_admins values('','$login','".md5($password)."','$firstName','$lastName','$email','".date("Y-m-d H:i:s")."','$_SESSION[username]','".date("Y-m-d H:i:s")."','$_SESSION[username]')";
         echo $query;
 
