@@ -45,6 +45,7 @@
             if (!empty($out1)) {
                 // check validity of password
                 if ($out1 = md5($password)) {
+                echo "<p>CORRECT PASS</p>";
                     // passwords match
                     $_SESSION['id'] = $out2;
                     $_SESSION['username'] = $username;
@@ -53,6 +54,7 @@
                 } else {
                     // wrong pass
                     // TODO
+                    echo "<p>WRONG PASS</p>";
                 }
             }
         }

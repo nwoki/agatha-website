@@ -7,8 +7,6 @@
 
     function createGameserverAdminAccount($login, $password, $firstName, $lastName, $email) {
         $link = connectMysqlDb();
-
-        // TODO check if account alreaady exists
         $query = "select id from gameserver_admins where login=\"$login\"";
 
         if (!mysqli_query($link, $query)) {
@@ -35,12 +33,32 @@
             }
         }
 
-        mysqli_close($con);
+        mysqli_close($link);
     }
 
 
     function deleteGameserverAdmin($gameserverAdminId) {
         // TODO delete from mysql && delete all gameservers from couch
+        $mysqlConn = connectMysqlDb();
+        $query = "delete from gameserver_admins where id=\"$gameserverAdminId\"";
+
+        if (!mysqli_query($mysqlConn, $query)) {
+            echo "<div class=\"box red\">ERROR: ".mysqli_error($mysqlConn)."</div>";
+            mysqli_close($mysqlConn);
+        } else {
+            // gameserver admin deleted, now delete the gameserver admin's gameservers on th couchDb
+            $couchConn = connectDb("gameservers");
+            $result = $couchConn->key($gameserverAdminId)->getView('user_gameservers','by_admin_id');
+
+
+            foreach ($result->rows as $row) {
+                $doc = $couchConn->asCouchDocuments()->getDoc($row->id);
+                $couchConn->deleteDoc($doc);
+
+                // post-redirect-get to avoid duplicate calls
+                header("Location: " . $_SERVER['REQUEST_URI']);
+            }
+        }
     }
 
 
